@@ -65,7 +65,7 @@ public class AlumnoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(alumnoDB));
 	}
 	
-	@DeleteMapping("/{id]")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable Long id){
 		service.deleteById(id);
 		//No content es codigo 204, y devolvemos el cuerpo vacio
