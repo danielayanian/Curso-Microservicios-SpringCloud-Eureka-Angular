@@ -1,19 +1,9 @@
 package com.danielayanian.microservicios.usuarios.services;
 
-import java.util.Optional;
-
+import com.danielayanian.microservicios.commons.services.CommonService;
 import com.danielayanian.microservicios.usuarios.models.entity.Alumno;
 
-public interface AlumnoService {
+public interface AlumnoService extends CommonService<Alumno> {
 
-	//Los siguientes 4 metodos serian el CRUD de Alumno
-	
-	public Iterable<Alumno> findAll();
-	
-	public Optional findById(Long id);
-	
-	public Alumno save(Alumno alumno);
-	
-	public void deleteById(Long id);
-	
+
 }
