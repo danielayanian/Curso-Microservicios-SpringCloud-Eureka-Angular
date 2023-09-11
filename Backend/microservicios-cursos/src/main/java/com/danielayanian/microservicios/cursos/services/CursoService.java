@@ -4,5 +4,5 @@ import com.danielayanian.microservicios.commons.services.CommonService;
 import com.danielayanian.microservicios.cursos.models.entity.Curso;
 
 public interface CursoService extends CommonService<Curso> {
-
+	public Curso findCursoByAlumnoId(Long id);
 }
