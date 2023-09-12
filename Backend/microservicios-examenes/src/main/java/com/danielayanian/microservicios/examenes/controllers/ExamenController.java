@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.danielayanian.microservicios.commons.controllers.CommonController;
 
 import com.danielayanian.microservicios.commons.examenes.models.entity.Examen;
-
+import com.danielayanian.microservicios.commons.examenes.models.entity.Pregunta;
 import com.danielayanian.microservicios.examenes.services.ExamenService;
 
 @RestController
