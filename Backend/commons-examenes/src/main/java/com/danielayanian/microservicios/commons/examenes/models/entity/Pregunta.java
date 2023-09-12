@@ -1,4 +1,4 @@
-package com.danielayanian.microservicios.examenes.models.entity;
+package com.danielayanian.microservicios.commons.examenes.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

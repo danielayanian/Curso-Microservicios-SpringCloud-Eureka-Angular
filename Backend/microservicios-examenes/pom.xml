@@ -18,6 +18,13 @@
 		<spring-cloud.version>2022.0.4</spring-cloud.version>
 	</properties>
 	<dependencies>
+		
+		<dependency>
+			<groupId>com.danielayanian.microservicios.commons.examenes</groupId>
+			<artifactId>commons-examenes</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.danielayanian.microservicios.commons</groupId>
 			<artifactId>commons-microservicios</artifactId>
