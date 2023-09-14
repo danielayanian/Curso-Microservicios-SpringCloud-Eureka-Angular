@@ -19,6 +19,9 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "examenes")
@@ -28,6 +31,8 @@ public class Examen {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty
+	@Size(min = 4, max = 30)
 	private String nombre;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -48,6 +53,7 @@ public class Examen {
 	private List<Pregunta> preguntas;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@NotNull
 	private Asignatura asignatura;
 	
 	public Examen() {

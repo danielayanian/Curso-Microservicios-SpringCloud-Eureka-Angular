@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,11 +20,20 @@ import com.danielayanian.microservicios.commons.examenes.models.entity.Examen;
 import com.danielayanian.microservicios.commons.examenes.models.entity.Pregunta;
 import com.danielayanian.microservicios.examenes.services.ExamenService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class ExamenController extends CommonController<Examen, ExamenService> {
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> editar(@RequestBody Examen examen, @PathVariable Long id){
+	//El BindingResult tiene que ir como parametro inmediatamente despues de examen
+	public ResponseEntity<?> editar(@Valid @RequestBody Examen examen, BindingResult result, @PathVariable Long id){
+		
+		//Validamos los campos
+		if(result.hasErrors()) {
+			return this.validar(result);
+		}
+		
 		Optional<Examen> o = service.findById(id);
 		
 		if(!o.isPresent()) {
