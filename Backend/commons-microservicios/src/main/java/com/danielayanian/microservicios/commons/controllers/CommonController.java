@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,11 @@ public class CommonController<E, S extends CommonService<E>> {
 		//OK significa status 200, y en el body pasamos la lista de objetos
 		//Por debajo se construye el JSON de manera automatica
 		return ResponseEntity.ok().body(service.findAll());
+	}
+	
+	@GetMapping("/pagina") //Este metodo paginara, en cambio el listar anterior devolvera todo sin paginar
+	public ResponseEntity<?> listar(Pageable pageable) {
+		return ResponseEntity.ok().body(service.findAll(pageable));
 	}
 	
 	@GetMapping("/{id}")
