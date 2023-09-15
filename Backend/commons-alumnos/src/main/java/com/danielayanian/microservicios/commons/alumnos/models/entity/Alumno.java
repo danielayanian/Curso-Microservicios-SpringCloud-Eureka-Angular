@@ -2,11 +2,14 @@ package com.danielayanian.microservicios.commons.alumnos.models.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -36,9 +39,17 @@ public class Alumno {
 	@Temporal(TemporalType.TIMESTAMP) //Para fecha con hora incluida
 	private Date createAt;
 
+	@Lob
+	@JsonIgnore
+	private byte[] foto;//Foto del alumno
+	
 	@PrePersist
 	public void prePersist() {
 		this.createAt = new Date();
+	}
+	
+	public Integer getFotoHashCode() {
+		return (this.foto!=null)?foto.hashCode():null;//Cada objeto en Java tiene un hashCode que lo identifica univocamente
 	}
 	
 	public Long getId() {
@@ -92,6 +103,14 @@ public class Alumno {
 		Alumno a = (Alumno)obj;
 		
 		return this.id != null && this.id.equals(a.getId());
+	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 	
 }
