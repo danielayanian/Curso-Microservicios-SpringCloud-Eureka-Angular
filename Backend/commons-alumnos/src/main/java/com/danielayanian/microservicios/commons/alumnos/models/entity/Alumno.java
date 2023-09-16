@@ -42,7 +42,7 @@ public class Alumno {
 	@Lob
 	@JsonIgnore
 	private byte[] foto;//Foto del alumno
-	
+
 	@PrePersist
 	public void prePersist() {
 		this.createAt = new Date();
