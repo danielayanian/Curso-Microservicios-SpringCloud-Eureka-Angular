@@ -25,7 +25,7 @@ public class RespuestaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(respuestasDB);
 	}
 	
-	@GetMapping("7alumno/{alumnoId}/examen/{examenId}")
+	@GetMapping("/alumno/{alumnoId}/examen/{examenId}")
 	public ResponseEntity<?> obtenerRespuestasPorAlumnoPorExamen(@PathVariable Long alumnoId,
 			@PathVariable Long examenId){
 		Iterable<Respuesta> respuestas = service.findRespuestaByAlumnoByExamen(alumnoId, examenId);
