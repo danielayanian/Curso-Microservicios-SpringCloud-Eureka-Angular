@@ -95,3 +95,5 @@ public class CursoController extends CommonController<Curso, CursoService> {
 	}
 	
 }
+ 
+ 
