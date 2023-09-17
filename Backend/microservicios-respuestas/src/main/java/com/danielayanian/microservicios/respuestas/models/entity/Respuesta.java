@@ -26,7 +26,7 @@ public class Respuesta {
 	private Alumno alumno;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	private Pregunta respuesta;
+	private Pregunta pregunta;
 	
 	public Long getId() {
 		return id;
@@ -52,12 +52,12 @@ public class Respuesta {
 		this.alumno = alumno;
 	}
 
-	public Pregunta getRespuesta() {
-		return respuesta;
+	public Pregunta getPregunta() {
+		return pregunta;
 	}
 
-	public void setRespuesta(Pregunta respuesta) {
-		this.respuesta = respuesta;
+	public void setPregunta(Pregunta pregunta) {
+		this.pregunta = pregunta;
 	}
 	
 }
