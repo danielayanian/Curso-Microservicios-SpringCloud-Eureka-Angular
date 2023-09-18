@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.danielayanian.microservicios.commons.controllers.CommonController;
 import com.danielayanian.microservicios.respuestas.models.entity.Respuesta;
 import com.danielayanian.microservicios.respuestas.services.RespuestaService;
 
 @RestController
-public class RespuestaController {
+public class RespuestaController extends CommonController<Respuesta, RespuestaService>{
 
 	@Autowired
 	private RespuestaService service;

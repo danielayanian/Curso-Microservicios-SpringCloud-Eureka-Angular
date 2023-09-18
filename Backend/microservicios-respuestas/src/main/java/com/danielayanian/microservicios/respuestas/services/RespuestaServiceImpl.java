@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.danielayanian.microservicios.commons.services.CommonServiceImpl;
 import com.danielayanian.microservicios.respuestas.models.entity.Respuesta;
 import com.danielayanian.microservicios.respuestas.models.repository.RespuestaRepository;
 
 @Service
-public class RespuestaServiceImpl implements RespuestaService {
+public class RespuestaServiceImpl extends CommonServiceImpl<Respuesta, RespuestaRepository> implements RespuestaService {
 
 	@Autowired
 	private RespuestaRepository repository;
