@@ -9,7 +9,7 @@ import com.danielayanian.microservicios.respuestas.models.entity.Respuesta;
 import com.danielayanian.microservicios.respuestas.models.repository.RespuestaRepository;
 
 @Service
-public class RespuestaServiceImpl extends CommonServiceImpl<Respuesta, RespuestaRepository> implements RespuestaService {
+public class RespuestaServiceImpl implements RespuestaService {
 
 	@Autowired
 	private RespuestaRepository repository;
