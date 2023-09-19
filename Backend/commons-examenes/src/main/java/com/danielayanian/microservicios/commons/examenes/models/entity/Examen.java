@@ -51,6 +51,8 @@ public class Examen {
 	//Para cuando eliminamos una pregunta de la lista de preguntas de un examen.
 	//Cuando la clave foranea de una pregunta sea NULL, la eliminara
 	@OneToMany(mappedBy = "examen", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) 
+	//En la tabla examenes no aparecerá ninguna referencia a las preguntas, pero en la tabla preguntas,
+	//cada pregunta tendrá un campo id_examen para saber a qué examen pertenece
 	private List<Pregunta> preguntas;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -60,6 +62,7 @@ public class Examen {
 	@Transient
 	//Con Transient hacemos que no se cree una columna en la tabla por este atributo, o sea,
 	//será un un atributo de la clase, pero no tendrá relación con la DB
+	//Pero este atributo con su valor sí se pasará al Json que se envíe en una petición
 	private boolean respondido;
 	
 	public Examen() {

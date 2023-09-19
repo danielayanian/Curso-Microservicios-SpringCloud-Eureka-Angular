@@ -1,8 +1,12 @@
 package com.danielayanian.microservicios.cursos.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -22,6 +26,20 @@ import jakarta.validation.Valid;
 
 @RestController
 public class CursoController extends CommonController<Curso, CursoService> {
+	
+	@Value("${config.balanceador.test}")
+	//Spring va a inyectar en este atributo el valor que config.balanceador.test tenga en
+	//el archivo properties
+	private String balanceadorTest;
+	
+	//Esto es solo para probar como el balanceador de carga hace el balanceo de csrga
+	@GetMapping("/balanceador-test")
+	public ResponseEntity<?> balanceadorTest() {
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("balanceador", balanceadorTest);
+		response.put("cursos", service.findAll());
+		return ResponseEntity.ok(response);
+	}
 
 	@PutMapping("/{id}")
 	//El BindingResult tiene que ir como parametro inmediatamente despues del entity (curso)
@@ -69,6 +87,30 @@ public class CursoController extends CommonController<Curso, CursoService> {
 	@GetMapping("/alumno/{id}")
 	public ResponseEntity<?> buscarPorAlumnoId(@PathVariable Long id){
 		Curso curso = service.findCursoByAlumnoId(id);
+		
+		if(curso != null) {
+			//Con este método que accede al micro respuestas, obtenemos todos los ids de los examenes
+			//que fueron repondidos por el alumno
+			//Como el método devuelve un Iterable, hacemos el casteo a List
+			//Esta lista contiene todos los ids de los examenes respondidos por el alumno
+			List<Long> examenesIds = (List<Long>) service.obtenerExamenesIdsConRespuestasAlumno(id);
+			
+			//Usamos programación funcional
+			//Queremos que todos los examenes del curso queden con la indicación de si
+			//fueron respondidos o no
+			List<Examen> examenes = curso.getExamenes().stream().map(examen -> {
+				if(examenesIds.contains(examen.getId())) {
+					examen.setRespondido(true);//Al examen le seteamos que fue respondido
+				}
+				return examen;
+			}).collect(Collectors.toList());
+			
+			//El objeto curso ahora sigue teniendo todos los examenes, pero con la indicación para cada
+			//uno de si fue respondido o no
+			curso.setExamenes(examenes);
+			
+		}
+		
 		return ResponseEntity.ok(curso);
 	}
 	
