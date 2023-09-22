@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `alumnos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla db_microservicios_examenes.alumnos: ~13 rows (aproximadamente)
+-- Volcando datos para la tabla db_microservicios_examenes.alumnos: ~12 rows (aproximadamente)
 DELETE FROM `alumnos`;
 INSERT INTO `alumnos` (`id`, `apellido`, `create_at`, `email`, `foto`, `nombre`) VALUES
 	(1, 'Borja', '2023-09-17 22:11:38.000000', 'mborja@gmail.com', NULL, 'Miguel'),
@@ -46,8 +46,7 @@ INSERT INTO `alumnos` (`id`, `apellido`, `create_at`, `email`, `foto`, `nombre`)
 	(9, 'Zalazar', '2023-09-17 22:11:38.000000', 'luli@gmail.com', NULL, 'Luciana'),
 	(10, 'Mendel', '2023-09-17 22:11:38.000000', 'pmendel@gmail.com', NULL, 'Pedro'),
 	(11, 'Messi', '2023-09-17 22:11:38.000000', 'pulga@gmail.com', NULL, 'Lionel'),
-	(12, 'Perez', '2023-09-17 22:11:38.000000', 'enzop@gmail.com', NULL, 'Enzo'),
-	(21, 'Ayanian', '2023-09-17 23:13:36.883000', 'dani@gmail.com', NULL, 'Daniel');
+	(12, 'Perez', '2023-09-17 22:11:38.000000', 'enzop@gmail.com', NULL, 'Enzo');
 
 -- Volcando estructura para tabla db_microservicios_examenes.asignaturas
 DROP TABLE IF EXISTS `asignaturas`;
