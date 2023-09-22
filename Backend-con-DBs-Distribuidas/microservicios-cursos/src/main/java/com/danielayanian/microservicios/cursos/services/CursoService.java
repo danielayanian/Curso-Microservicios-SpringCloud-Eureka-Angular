@@ -1,8 +1,11 @@
 package com.danielayanian.microservicios.cursos.services;
 
-import org.springframework.web.bind.annotation.PathVariable;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.danielayanian.microservicios.commons.services.CommonService;
+import com.danielayanian.microservicios.cursos.clients.AlumnosFeignClient;
 import com.danielayanian.microservicios.cursos.models.entity.Curso;
 
 public interface CursoService extends CommonService<Curso> {
@@ -13,5 +16,7 @@ public interface CursoService extends CommonService<Curso> {
 	//eliminamos el @PathVariable, que acá no se requiere, solo se requiere en feign o en los
 	//controladores
 	public Iterable<Long> obtenerExamenesIdsConRespuestasAlumno(Long alumnoId);
+	
+	public Iterable<AlumnosFeignClient> obtenerAlumnosPorCurso(@RequestParam List<Long> ids);
 	
 }

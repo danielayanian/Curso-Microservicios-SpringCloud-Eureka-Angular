@@ -20,6 +20,7 @@ import com.danielayanian.microservicios.commons.alumnos.models.entity.Alumno;
 import com.danielayanian.microservicios.commons.controllers.CommonController;
 import com.danielayanian.microservicios.commons.examenes.models.entity.Examen;
 import com.danielayanian.microservicios.cursos.models.entity.Curso;
+import com.danielayanian.microservicios.cursos.models.entity.CursoAlumno;
 import com.danielayanian.microservicios.cursos.services.CursoService;
 
 import jakarta.validation.Valid;
@@ -31,6 +32,20 @@ public class CursoController extends CommonController<Curso, CursoService> {
 	//Spring va a inyectar en este atributo el valor que config.balanceador.test tenga en
 	//el archivo properties
 	private String balanceadorTest;
+	
+	@GetMapping
+	@Override
+	public ResponseEntity<?> listar() {
+		List<Curso> cursos = ((List<Curso>) service.findAll()).stream().map(c -> {
+			c.getCursoAlumnos().forEach(ca -> {
+				Alumno alumno = new Alumno();
+				alumno.setId(ca.getAlumnoId());
+				c.addAlumno(alumno);
+			});
+			return c;
+		}).collect(Collectors.toList());
+		return ResponseEntity.ok().body(cursos);
+	}
 	
 	//Esto es solo para probar como el balanceador de carga hace el balanceo de csrga
 	@GetMapping("/balanceador-test")
@@ -69,7 +84,12 @@ public class CursoController extends CommonController<Curso, CursoService> {
 			return ResponseEntity.notFound().build();
 		}
 		Curso cursoDB = o.get();
-		alumnos.forEach(a -> {cursoDB.addAlumno(a);});
+		alumnos.forEach(a -> {
+			CursoAlumno cursoAlumno = new CursoAlumno();
+			cursoAlumno.setAlumnoId(a.getId());
+			cursoAlumno.setCurso(cursoDB);
+			cursoDB.addCursoAlumno(cursoAlumno);
+		});
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(cursoDB));
 	}
 	
@@ -80,7 +100,9 @@ public class CursoController extends CommonController<Curso, CursoService> {
 			return ResponseEntity.notFound().build();
 		}
 		Curso cursoDB = o.get();
-		cursoDB.removeAlumno(alumno);
+		CursoAlumno cursoAlumno = new CursoAlumno();
+		cursoAlumno.setAlumnoId(alumno.getId());
+		cursoDB.removeCursoAlumno(cursoAlumno);
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(cursoDB));
 	}
 	
