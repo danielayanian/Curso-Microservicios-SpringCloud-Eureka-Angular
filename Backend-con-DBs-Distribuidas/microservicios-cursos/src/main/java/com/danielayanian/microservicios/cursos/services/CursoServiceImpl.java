@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.danielayanian.microservicios.commons.alumnos.models.entity.Alumno;
 import com.danielayanian.microservicios.commons.services.CommonServiceImpl;
 import com.danielayanian.microservicios.cursos.clients.AlumnosFeignClient;
 import com.danielayanian.microservicios.cursos.clients.RespuestaFeignClient;
@@ -40,8 +41,14 @@ public class CursoServiceImpl extends CommonServiceImpl<Curso, CursoRepository> 
 	}
 
 	@Override
-	public Iterable<AlumnosFeignClient> obtenerAlumnosPorCurso(List<Long> ids) {
+	public Iterable<Alumno> obtenerAlumnosPorCurso(List<Long> ids) {
 		return clientAlumno.obtenerAlumnosPorCurso(ids);
+	}
+
+	@Override
+	@Transactional
+	public void eliminarCursoAlumnoPorId(Long id) {
+		repository.eliminarCursoAlumnoPorId(id);
 	}
 	
 }

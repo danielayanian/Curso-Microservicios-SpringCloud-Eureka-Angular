@@ -2,8 +2,7 @@ package com.danielayanian.microservicios.cursos.services;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
+import com.danielayanian.microservicios.commons.alumnos.models.entity.Alumno;
 import com.danielayanian.microservicios.commons.services.CommonService;
 import com.danielayanian.microservicios.cursos.clients.AlumnosFeignClient;
 import com.danielayanian.microservicios.cursos.models.entity.Curso;
@@ -17,6 +16,8 @@ public interface CursoService extends CommonService<Curso> {
 	//controladores
 	public Iterable<Long> obtenerExamenesIdsConRespuestasAlumno(Long alumnoId);
 	
-	public Iterable<AlumnosFeignClient> obtenerAlumnosPorCurso(@RequestParam List<Long> ids);
+	public Iterable<Alumno> obtenerAlumnosPorCurso(List<Long> ids);
+	
+	public void eliminarCursoAlumnoPorId(Long id);
 	
 }
