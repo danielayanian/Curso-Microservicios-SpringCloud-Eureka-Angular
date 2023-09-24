@@ -9,8 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
-@EntityScan({"com.danielayanian.microservicios.commons.alumnos.models.entity",
-			 "com.danielayanian.microservicios.commons.examenes.models.entity",
+@EntityScan({"com.danielayanian.microservicios.commons.examenes.models.entity",
 			 "com.danielayanian.microservicios.cursos.models.entity"})
 public class MicroserviciosCursosApplication {
 

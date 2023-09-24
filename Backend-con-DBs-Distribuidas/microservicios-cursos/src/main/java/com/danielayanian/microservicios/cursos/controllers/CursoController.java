@@ -36,7 +36,7 @@ public class CursoController extends CommonController<Curso, CursoService> {
 	//el archivo properties
 	private String balanceadorTest;
 	
-	@DeleteMapping("/eliminar-alumno/{id]")
+	@DeleteMapping("/eliminar-alumno/{id}")
 	public ResponseEntity<?> eliminarCursoAlumnoPorId(@PathVariable Long id){
 		service.eliminarCursoAlumnoPorId(id);
 		return ResponseEntity.noContent().build();
