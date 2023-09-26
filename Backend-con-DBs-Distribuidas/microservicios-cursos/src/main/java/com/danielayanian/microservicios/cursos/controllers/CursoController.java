@@ -162,19 +162,23 @@ public class CursoController extends CommonController<Curso, CursoService> {
 			//Esta lista contiene todos los ids de los examenes respondidos por el alumno
 			List<Long> examenesIds = (List<Long>) service.obtenerExamenesIdsConRespuestasAlumno(id);
 			
-			//Usamos programación funcional
-			//Queremos que todos los examenes del curso queden con la indicación de si
-			//fueron respondidos o no
-			List<Examen> examenes = curso.getExamenes().stream().map(examen -> {
-				if(examenesIds.contains(examen.getId())) {
-					examen.setRespondido(true);//Al examen le seteamos que fue respondido
-				}
-				return examen;
-			}).collect(Collectors.toList());
+			if(examenesIds != null && examenesIds.size() > 0) {
 			
-			//El objeto curso ahora sigue teniendo todos los examenes, pero con la indicación para cada
-			//uno de si fue respondido o no
-			curso.setExamenes(examenes);
+				//Usamos programación funcional
+				//Queremos que todos los examenes del curso queden con la indicación de si
+				//fueron respondidos o no
+				List<Examen> examenes = curso.getExamenes().stream().map(examen -> {
+					if(examenesIds.contains(examen.getId())) {
+						examen.setRespondido(true);//Al examen le seteamos que fue respondido
+					}
+					return examen;
+				}).collect(Collectors.toList());
+				
+				//El objeto curso ahora sigue teniendo todos los examenes, pero con la indicación para cada
+				//uno de si fue respondido o no
+				curso.setExamenes(examenes);
+				
+			}
 			
 		}
 		
