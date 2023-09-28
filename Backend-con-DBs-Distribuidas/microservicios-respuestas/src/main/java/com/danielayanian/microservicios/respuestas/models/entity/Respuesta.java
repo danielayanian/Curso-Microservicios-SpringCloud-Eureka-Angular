@@ -1,7 +1,6 @@
 package com.danielayanian.microservicios.respuestas.models.entity;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.danielayanian.microservicios.commons.alumnos.models.entity.Alumno;
@@ -15,12 +14,10 @@ public class Respuesta {
 	
 	private String texto;
 	
-	@Transient //No es el mismo Transient que usamos en las DB SQL
 	private Alumno alumno;
 	
 	private Long alumnoId;
 	
-	@Transient //El atributo no sera parte de la coleccion de mongoDB, solo sera atributo de esta clase
 	private Pregunta pregunta;
 	
 	private Long preguntaId;
