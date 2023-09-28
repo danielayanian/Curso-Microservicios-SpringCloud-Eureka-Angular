@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "6515affefedb6077debe6125"
+  },
+  "texto": "Colon",
+  "alumno": {
+    "_id": 5,
+    "nombre": "Matias",
+    "apellido": "Suarez",
+    "email": "msuarez@gmail.com",
+    "createAt": {
+      "$date": "2023-09-18T01:11:38.000Z"
+    }
+  },
+  "alumnoId": 5,
+  "pregunta": {
+    "_id": 7,
+    "texto": "Quien descubrio America",
+    "examen": {
+      "_id": 1,
+      "preguntas": [],
+      "respondido": false
+    }
+  },
+  "preguntaId": 7,
+  "_class": "com.danielayanian.microservicios.respuestas.models.entity.Respuesta"
+},
+{
+  "_id": {
+    "$oid": "6515affefedb6077debe6126"
+  },
+  "texto": "Paris",
+  "alumno": {
+    "_id": 5,
+    "nombre": "Matias",
+    "apellido": "Suarez",
+    "email": "msuarez@gmail.com",
+    "createAt": {
+      "$date": "2023-09-18T01:11:38.000Z"
+    }
+  },
+  "alumnoId": 5,
+  "pregunta": {
+    "_id": 9,
+    "texto": "Cual es la capital de Francia",
+    "examen": {
+      "_id": 1,
+      "preguntas": [],
+      "respondido": false
+    }
+  },
+  "preguntaId": 9,
+  "_class": "com.danielayanian.microservicios.respuestas.models.entity.Respuesta"
+},
+{
+  "_id": {
+    "$oid": "6515affefedb6077debe6127"
+  },
+  "texto": "A soccer player",
+  "alumno": {
+    "_id": 5,
+    "nombre": "Matias",
+    "apellido": "Suarez",
+    "email": "msuarez@gmail.com",
+    "createAt": {
+      "$date": "2023-09-18T01:11:38.000Z"
+    }
+  },
+  "alumnoId": 5,
+  "pregunta": {
+    "_id": 10,
+    "texto": "Quien es Messi",
+    "examen": {
+      "_id": 1,
+      "preguntas": [],
+      "respondido": false
+    }
+  },
+  "preguntaId": 10,
+  "_class": "com.danielayanian.microservicios.respuestas.models.entity.Respuesta"
+}]
