@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +20,7 @@ import com.danielayanian.microservicios.commons.services.CommonService;
 
 import jakarta.validation.Valid;
 
+//@CrossOrigin({"http://localhost:4200"})
 public class CommonController<E, S extends CommonService<E>> {
 
 	@Autowired
