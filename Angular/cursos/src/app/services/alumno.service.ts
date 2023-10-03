@@ -29,11 +29,11 @@ export class AlumnoService {
     const params = new HttpParams()
     .set('page', page)
     .set('size', size);
-    return this.http.get<any>('${this.baseEndpoint}/pagina', {params: params});
+    return this.http.get<any>(`${this.baseEndpoint}/pagina`, {params: params});
   }
 
   public ver(id: Number): Observable<Alumno>{
-    return this.http.get<Alumno>('${this.baseEndpoint}/${id}');
+    return this.http.get<Alumno>(`${this.baseEndpoint}/${id}`);
   }
 
   public crear(alumno:Alumno): Observable<Alumno>{
@@ -41,12 +41,12 @@ export class AlumnoService {
   }
 
   public editar(alumno:Alumno): Observable<Alumno>{
-    return this.http.put<Alumno>('${this.baseEndpoint}/${alumno.id}', alumno, 
+    return this.http.put<Alumno>(`${this.baseEndpoint}/${alumno.id}`, alumno, 
     {headers: this.cabeceras});
   }
 
   public eliminar(id: Number): Observable<void>{
-    return this.http.delete<void>('${this.baseEndpoint}/${id}');
+    return this.http.delete<void>(`${this.baseEndpoint}/${id}`);
   }
 
 }
