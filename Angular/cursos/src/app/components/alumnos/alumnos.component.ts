@@ -4,6 +4,7 @@ import { AlumnoService } from 'src/app/services/alumno.service';
 import { CommonListarComponent } from '../common-listar.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { customPaginator } from '../custom-paginator-configuration';
+import { BASE_ENDPOINT } from 'src/app/config/app';
 
 
 @Component({
@@ -15,6 +16,8 @@ import { customPaginator } from '../custom-paginator-configuration';
   ]
 })
 export class AlumnosComponent extends CommonListarComponent<Alumno, AlumnoService> implements OnInit { 
+
+  baseEndpoint = BASE_ENDPOINT + '/alumnos';
 
   constructor(service: AlumnoService){
     super(service);
