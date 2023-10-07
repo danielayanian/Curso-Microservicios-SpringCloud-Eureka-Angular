@@ -8,3 +8,18 @@ import { Component } from '@angular/core';
 export class CursosComponent {
 
 }
+
+
+
+/*
+acordarme de agregar:
+
+providers: [
+    { provide: MatPaginatorIntl, useValue: customPaginator() }
+  ]
+
+  en @Component, para la paginacion
+
+  Ver alumnos-component.ts
+
+*/

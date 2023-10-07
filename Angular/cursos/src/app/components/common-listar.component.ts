@@ -1,6 +1,6 @@
 import { ViewChild, OnInit, Injectable } from '@angular/core';
 import Swal from 'sweetalert2'
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { Generic } from '../models/generic';
 import { CommonService } from '../services/common.service';
 
@@ -13,6 +13,8 @@ export abstract class CommonListarComponent<E extends Generic, S extends CommonS
 
   protected nombreModel: string;
 
+  protected service: S;
+
   totalRegistros = 0;
   paginaActual = 0;
   totalPorPagina = 4;
@@ -20,7 +22,9 @@ export abstract class CommonListarComponent<E extends Generic, S extends CommonS
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(protected service: S){}
+  constructor(service: S){
+    this.service = service;
+  }
 
   ngOnInit(){
     this.calcularRangos();
@@ -39,7 +43,7 @@ export abstract class CommonListarComponent<E extends Generic, S extends CommonS
     .subscribe(p => {
       this.lista = p.content as E[];
       this.totalRegistros = p.totalElements as number;
-      //this.paginator._intl.itemsPerPageLabel = 'Registros por página:';//NO ANDA
+      //this.paginator._intl.itemsPerPageLabel = 'Registros por página:';
     });
   }
 

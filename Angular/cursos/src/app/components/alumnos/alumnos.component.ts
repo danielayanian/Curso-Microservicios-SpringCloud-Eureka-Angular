@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { CommonListarComponent } from '../common-listar.component';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { customPaginator } from '../custom-paginator-configuration';
+
 
 @Component({
   selector: 'app-alumnos',
   templateUrl: './alumnos.component.html',
-  styleUrls: ['./alumnos.component.css']
+  styleUrls: ['./alumnos.component.css'],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: customPaginator() }
+  ]
 })
 export class AlumnosComponent extends CommonListarComponent<Alumno, AlumnoService> implements OnInit { 
 

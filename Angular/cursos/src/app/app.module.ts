@@ -10,7 +10,8 @@ import { LayoutModule } from './layout/layout.module';
 import { AlumnosFormComponent } from './components/alumnos/alumnos-form.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { customPaginator } from './components/custom-paginator-configuration';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     BrowserAnimationsModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [{ provide: MatPaginatorIntl, useValue: customPaginator() }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
