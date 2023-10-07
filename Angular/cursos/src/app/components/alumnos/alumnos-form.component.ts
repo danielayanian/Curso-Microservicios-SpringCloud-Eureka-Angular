@@ -13,13 +13,15 @@ import { CommonFormComponent } from '../common-form.component';
 })
 export class AlumnosFormComponent extends CommonFormComponent<Alumno, AlumnoService> implements OnInit {
 
+  tituloCrear = 'Crear Alumnos';
+  tituloEditar = 'Editar Alumnos';
   
 
   constructor(service: AlumnoService, router: Router,
               route: ActivatedRoute){
 
     super(service, router, route);
-    this.titulo = "Crear Alumnos";
+    //this.titulo = "Crear Alumnos";
     this.model = new Alumno();
     this.redirect = '/alumnos';
     this.nombreModel = 'Alumno';//O Alumno.name
