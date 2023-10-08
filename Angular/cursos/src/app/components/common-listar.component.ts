@@ -1,6 +1,6 @@
 import { ViewChild, OnInit, Injectable } from '@angular/core';
 import Swal from 'sweetalert2'
-import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Generic } from '../models/generic';
 import { CommonService } from '../services/common.service';
 

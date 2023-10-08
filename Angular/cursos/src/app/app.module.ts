@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { customPaginator } from './components/custom-paginator-configuration';
+import { CursoFormComponent } from './components/cursos/curso-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { customPaginator } from './components/custom-paginator-configuration';
     AlumnosComponent,
     CursosComponent,
     ExamenesComponent,
-    AlumnosFormComponent
+    AlumnosFormComponent,
+    CursoFormComponent
   ],
   imports: [
     BrowserModule,

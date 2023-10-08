@@ -13,8 +13,8 @@ import { CommonFormComponent } from '../common-form.component';
 })
 export class AlumnosFormComponent extends CommonFormComponent<Alumno, AlumnoService> implements OnInit {
 
-  tituloCrear = 'Crear Alumnos';
-  tituloEditar = 'Editar Alumnos';
+  tituloCrear = 'Crear Alumno';
+  tituloEditar = 'Editar Alumno';
   
   private fotoSeleccionada: File;
 
