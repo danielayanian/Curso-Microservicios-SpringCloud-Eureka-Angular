@@ -11,9 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CursoFormComponent extends CommonFormComponent<Curso, CursoService> {
 
-  tituloCrear = 'Crear Curso';
-  tituloEditar = 'Editar Curso';
-
   constructor(service: CursoService, router: Router,
     route: ActivatedRoute){
     super(service, router, route);

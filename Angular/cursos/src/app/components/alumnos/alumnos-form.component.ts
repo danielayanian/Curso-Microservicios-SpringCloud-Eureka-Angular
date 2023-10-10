@@ -12,9 +12,6 @@ import { CommonFormComponent } from '../common-form.component';
   styleUrls: ['./alumnos-form.component.css']
 })
 export class AlumnosFormComponent extends CommonFormComponent<Alumno, AlumnoService> implements OnInit {
-
-  tituloCrear = 'Crear Alumno';
-  tituloEditar = 'Editar Alumno';
   
   private fotoSeleccionada: File;
 
@@ -22,7 +19,7 @@ export class AlumnosFormComponent extends CommonFormComponent<Alumno, AlumnoServ
               route: ActivatedRoute){
 
     super(service, router, route);
-    //this.titulo = "Crear Alumnos";
+    this.titulo = "Crear Alumno";
     this.model = new Alumno();
     this.redirect = '/alumnos';
     this.nombreModel = 'Alumno';//O Alumno.name
