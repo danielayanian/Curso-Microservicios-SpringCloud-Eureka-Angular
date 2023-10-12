@@ -55,9 +55,15 @@ public class Examen {
 	//cada pregunta tendrá un campo id_examen para saber a qué examen pertenece
 	private List<Pregunta> preguntas;
 
+	@JsonIgnoreProperties(value= {"handler", "hibernateLazyInitializer"})
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NotNull
-	private Asignatura asignatura;
+	private Asignatura asignaturaPadre;
+	
+	@JsonIgnoreProperties(value= {"handler", "hibernateLazyInitializer"})
+	@ManyToOne(fetch = FetchType.LAZY)
+	@NotNull
+	private Asignatura asignaturaHija;
 	
 	@Transient
 	//Con Transient hacemos que no se cree una columna en la tabla por este atributo, o sea,
@@ -120,14 +126,6 @@ public class Examen {
 		this.preguntas.remove(pregunta);
 		pregunta.setExamen(null);
 	}
-	
-	public Asignatura getAsignatura() {
-		return asignatura;
-	}
-
-	public void setAsignatura(Asignatura asignatura) {
-		this.asignatura = asignatura;
-	}
 
 	public boolean isRespondido() {
 		return respondido;
@@ -148,6 +146,22 @@ public class Examen {
 		Examen a = (Examen)obj;
 		
 		return this.id != null && this.id.equals(a.getId());
+	}
+
+	public Asignatura getAsignaturaPadre() {
+		return asignaturaPadre;
+	}
+
+	public void setAsignaturaPadre(Asignatura asignaturaPadre) {
+		this.asignaturaPadre = asignaturaPadre;
+	}
+
+	public Asignatura getAsignaturaHija() {
+		return asignaturaHija;
+	}
+
+	public void setAsignaturaHija(Asignatura asignaturaHija) {
+		this.asignaturaHija = asignaturaHija;
 	}
 	
 }
