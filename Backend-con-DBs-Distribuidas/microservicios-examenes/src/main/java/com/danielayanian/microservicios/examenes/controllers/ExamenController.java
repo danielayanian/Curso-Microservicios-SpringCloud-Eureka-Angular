@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,7 @@ public class ExamenController extends CommonController<Examen, ExamenService> {
 		Examen examenDB = o.get();
 		examenDB.setNombre(examen.getNombre());
 		
-		List<Pregunta> eliminadas = new ArrayList<>();
+		/*List<Pregunta> eliminadas = new ArrayList<>();
 		examenDB.getPreguntas().forEach(pdb -> {
 			if(!examen.getPreguntas().contains(pdb)) {
 				eliminadas.add(pdb);
@@ -57,13 +58,15 @@ public class ExamenController extends CommonController<Examen, ExamenService> {
 		});
 		eliminadas.forEach(p -> {
 			examenDB.removePregunta(p);
-		});
+		});*/
 		
 		//Lo anterior lo podemos resumir asi usando programacion funcional
-		//examenDB.getPreguntas()
-		//.stream()
-		//.filter(pdb -> !examen.getPreguntas().contains(pdb))
-		//.forEach(examenDB::removePregunta);
+		List<Pregunta> eliminadas = examenDB.getPreguntas()
+		.stream()
+		.filter(pdb -> !examen.getPreguntas().contains(pdb))
+		.collect(Collectors.toList());
+		
+		eliminadas.forEach(examenDB::removePregunta);
 		
 		examenDB.setPreguntas(examen.getPreguntas());
 		examenDB.setAsignaturaHija(examen.getAsignaturaHija());

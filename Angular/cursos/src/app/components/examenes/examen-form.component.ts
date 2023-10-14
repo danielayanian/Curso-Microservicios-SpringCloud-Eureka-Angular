@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Examen } from 'src/app/models/examen';
 import { Asignatura } from 'src/app/models/asignatura';
 import { Pregunta } from 'src/app/models/pregunta';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-examen-form',
@@ -16,6 +17,8 @@ export class ExamenFormComponent extends CommonFormComponent<Examen, ExamenServi
   asignaturasPadre: Asignatura[] = [];
 
   asignaturasHija: Asignatura[] = [];
+
+  errorPreguntas: string;
 
   constructor(service: ExamenService, router: Router, route: ActivatedRoute){
     super(service, router, route);
@@ -46,6 +49,34 @@ export class ExamenFormComponent extends CommonFormComponent<Examen, ExamenServi
 
   }
 
+  public override crear(): void{
+    
+    this.eliminarPreguntasVacias();
+
+    if(this.model.preguntas.length === 0){
+      this.errorPreguntas = 'Examen debe tener preguntas';
+      //Swal.fire('Error Preguntas', 'Examen debe tener preguntas', 'error');
+      return;
+    }
+    this.errorPreguntas = undefined;
+
+    super.crear();
+  }
+
+  public override editar(): void{
+    
+    this.eliminarPreguntasVacias();
+
+    if(this.model.preguntas.length === 0){
+      this.errorPreguntas = 'Examen debe tener preguntas';
+      //Swal.fire('Error Preguntas', 'Examen debe tener preguntas', 'error');
+      return;
+    }
+    this.errorPreguntas = undefined;
+
+    super.editar();
+  }
+
   cargarHijos(): void{
     this.asignaturasHija = this.model.asignaturaPadre? 
     this.model.asignaturaPadre.hijos: [];
@@ -73,6 +104,10 @@ export class ExamenFormComponent extends CommonFormComponent<Examen, ExamenServi
 
   eliminarPregunta(pregunta): void{
     this.model.preguntas = this.model.preguntas.filter(p => pregunta.texto !== p.texto);
+  }
+
+  eliminarPreguntasVacias(): void{
+    this.model.preguntas = this.model.preguntas.filter(p => p.texto != null && p.texto.length > 0);
   }
 
 }
