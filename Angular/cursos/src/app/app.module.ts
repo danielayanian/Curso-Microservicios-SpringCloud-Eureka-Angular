@@ -8,12 +8,20 @@ import { CursosComponent } from './components/cursos/cursos.component';
 import { ExamenesComponent } from './components/examenes/examenes.component';
 import { LayoutModule } from './layout/layout.module';
 import { AlumnosFormComponent } from './components/alumnos/alumnos-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { customPaginator } from './components/custom-paginator-configuration';
 import { CursoFormComponent } from './components/cursos/curso-form.component';
 import { ExamenFormComponent } from './components/examenes/examen-form.component';
+//Angular Material, similar a Bootstrap
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+
+import { AsignarAlumnosComponent } from './components/cursos/asignar-alumnos.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +31,8 @@ import { ExamenFormComponent } from './components/examenes/examen-form.component
     ExamenesComponent,
     AlumnosFormComponent,
     CursoFormComponent,
-    ExamenFormComponent
+    ExamenFormComponent,
+    AsignarAlumnosComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,13 @@ import { ExamenFormComponent } from './components/examenes/examen-form.component
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: MatPaginatorIntl, useValue: customPaginator() }],
   bootstrap: [AppComponent]
