@@ -16,6 +16,9 @@ export class AsignarAlumnosComponent implements OnInit {
 
   curso: Curso;
   alumnosAsignar: Alumno[] = [];
+
+  alumnos: Alumno[] = [];
+
   mostrarColumnas: string[] = ['nombre','apellido', 'seleccion'];
 
   seleccion: SelectionModel<Alumno> = new SelectionModel<Alumno>(true, []);
@@ -28,7 +31,10 @@ export class AsignarAlumnosComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id: number = +params.get('id');
-      this.cursoService.ver(id).subscribe(c => this.curso = c);
+      this.cursoService.ver(id).subscribe(c => {
+        this.curso = c;
+        this.alumnos = this.curso.alumnos;
+      });
     });
   }
 
@@ -36,7 +42,15 @@ export class AsignarAlumnosComponent implements OnInit {
     nombre = nombre !== undefined? nombre.trim(): '';
     if(nombre !== ''){
       this.alumnoService.filtrarPorNombre(nombre)
-      .subscribe(alumnos => this.alumnosAsignar = alumnos);
+      .subscribe(alumnos => this.alumnosAsignar = alumnos.filter(a => {
+        let filtrar = true;
+        this.alumnos.forEach(ca => {//this.curso.alumnos.forEach(ca => {
+          if(a.id === ca.id){
+            filtrar = false;
+          }
+        });
+        return filtrar;
+      }));
     }
   }
 
@@ -55,15 +69,30 @@ export class AsignarAlumnosComponent implements OnInit {
   asignar(): void{
     console.log(this.seleccion.selected);
     this.cursoService.asignarAlumnos(this.curso, this.seleccion.selected)
-    .subscribe(c => {
+    .subscribe({next: c => {
       Swal.fire(
         'Asignados:', 
         `Alumnos asignados con éxito al curso ${this.curso.nombre}`,
         'success'
       );
+      this.alumnos = this.alumnos.concat(this.seleccion.selected);/////agregado
       this.alumnosAsignar = [];
       this.seleccion.clear();
-    });
+    }, 
+    error: e => {
+      if(e.status === 500){
+        const mensaje = e.error.message as string;
+        if(mensaje.indexOf('Duplicate entry') > -1){
+          Swal.fire(
+            'Cuidado:',
+            'No se puede asignar el alumno, ya está asociado a otro curso.',
+            'error'
+          );
+        }
+      }
+    }});
   }
+
+  
 
 }
