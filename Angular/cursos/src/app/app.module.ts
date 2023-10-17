@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { AsignarAlumnosComponent } from './components/cursos/asignar-alumnos.component';
 
@@ -47,7 +48,8 @@ import { AsignarAlumnosComponent } from './components/cursos/asignar-alumnos.com
     MatCheckboxModule,
     MatButtonModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
   ],
   providers: [{ provide: MatPaginatorIntl, useValue: customPaginator() }],
   bootstrap: [AppComponent]

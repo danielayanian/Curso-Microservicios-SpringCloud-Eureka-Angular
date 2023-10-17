@@ -16,10 +16,12 @@ export class AsignarAlumnosComponent implements OnInit {
 
   curso: Curso;
   alumnosAsignar: Alumno[] = [];
-
   alumnos: Alumno[] = [];
 
+  tabIndex = 0;
+
   mostrarColumnas: string[] = ['nombre','apellido', 'seleccion'];
+  mostrarColumnasAlumnos: string[] = ['id', 'nombre','apellido', 'email'];
 
   seleccion: SelectionModel<Alumno> = new SelectionModel<Alumno>(true, []);
 
@@ -28,7 +30,7 @@ export class AsignarAlumnosComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.route.paramMap.subscribe(params => {
       const id: number = +params.get('id');
       this.cursoService.ver(id).subscribe(c => {
@@ -44,7 +46,7 @@ export class AsignarAlumnosComponent implements OnInit {
       this.alumnoService.filtrarPorNombre(nombre)
       .subscribe(alumnos => this.alumnosAsignar = alumnos.filter(a => {
         let filtrar = true;
-        this.alumnos.forEach(ca => {//this.curso.alumnos.forEach(ca => {
+        this.alumnos.forEach(ca => {
           if(a.id === ca.id){
             filtrar = false;
           }
@@ -70,29 +72,33 @@ export class AsignarAlumnosComponent implements OnInit {
     console.log(this.seleccion.selected);
     this.cursoService.asignarAlumnos(this.curso, this.seleccion.selected)
     .subscribe({next: c => {
+      this.tabIndex = 2;
       Swal.fire(
         'Asignados:', 
         `Alumnos asignados con éxito al curso ${this.curso.nombre}`,
         'success'
       );
-      this.alumnos = this.alumnos.concat(this.seleccion.selected);/////agregado
+      this.alumnos = this.alumnos.concat(this.seleccion.selected);
       this.alumnosAsignar = [];
       this.seleccion.clear();
     }, 
     error: e => {
       if(e.status === 500){
-        const mensaje = e.error.message as string;
+        Swal.fire(
+          'Cuidado:',
+          'No se puede asignar el alumno, ya está asociado a otro curso.',
+          'error'
+        );
+        /*const mensaje = e.error.message as string;
         if(mensaje.indexOf('Duplicate entry') > -1){
           Swal.fire(
             'Cuidado:',
             'No se puede asignar el alumno, ya está asociado a otro curso.',
             'error'
           );
-        }
+        }*/
       }
     }});
   }
-
-  
 
 }
