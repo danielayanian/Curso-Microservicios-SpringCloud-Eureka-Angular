@@ -8,6 +8,8 @@
     </mat-card-header>
 
     <mat-card-content>
+        <mat-tab-group dynamicHeight [(selectedIndex)]="tabIndex">
+            <mat-tab label="Asignar Examenes">
 
         <mat-form-field>
             <input matInput placeholder="Añadir examen" [formControl]="autocompleteControl"
@@ -43,6 +45,37 @@
             <tr mat-header-row *matHeaderRowDef="mostrarColumnas"></tr>
             <tr mat-row *matRowDef="let examen; columns: mostrarColumnas;"></tr>
         </table>
+        <button mat-raised-button color="primary" class="m-4"
+        (click)="asignar()"
+        [disabled]="examenesAsignar.length === 0">Asignar</button>
 
+    </mat-tab>
+
+    <mat-tab label="Exámenes del curso">
+        <table mat-table [dataSource]="examenes" class="mat-elevation-z8 mx-3">
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let examen"> {{examen.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let examen"> {{examen.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="asignaturas">
+                <th mat-header-cell *matHeaderCellDef> Asignatura </th>
+                <td mat-cell *matCellDef="let examen">
+                     {{examen.asignaturaPadre.nombre}} -> {{examen.asignaturaHija.nombre}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="mostrarColumnasExamenes"></tr>
+            <tr mat-row *matRowDef="let examen; columns: mostrarColumnasExamenes;"></tr>
+        </table>
+    </mat-tab>
+
+</mat-tab-group>
     </mat-card-content>
 </mat-card>
