@@ -25,6 +25,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { AsignarAlumnosComponent } from './components/cursos/asignar-alumnos.component';
 import { AsignarExamenesComponent } from './components/cursos/asignar-examenes.component';
+import { ResponderExamenComponent } from './components/alumnos/responder-examen.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AsignarExamenesComponent } from './components/cursos/asignar-examenes.c
     CursoFormComponent,
     ExamenFormComponent,
     AsignarAlumnosComponent,
-    AsignarExamenesComponent
+    AsignarExamenesComponent,
+    ResponderExamenComponent
   ],
   imports: [
     BrowserModule,
