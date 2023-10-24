@@ -55,9 +55,12 @@ export class ResponderExamenComponent implements OnInit {
         width: '750px',
         data: {curso: this.curso, alumno: this.alumno, examen: examen}
       });
-      modalRef.afterClosed().subscribe(respuestas => {
+      modalRef.afterClosed().subscribe(respuestasMap => {
         console.log('modal responder examen ha sido enviado y cerrado');
-        console.log(respuestas);
+        console.log(respuestasMap);
+        if(respuestasMap){
+          const respuestas = Array.from(respuestasMap.values());
+        }
       });
     }
 
