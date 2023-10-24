@@ -11,12 +11,12 @@ export class RespuestaService {
 
   private cabeceras: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
-  private baseEndpoint = BASE_ENDPOINT + '/alumnos';
+  private baseEndpoint = BASE_ENDPOINT + '/respuestas';
 
   constructor(private http: HttpClient) {}
 
   crear(respuestas: Respuesta[]): Observable<Respuesta[]>{
-    return this.http.post<Respuesta[]>();
+    return this.http.post<Respuesta[]>(this.baseEndpoint, respuestas, {headers: this.cabeceras});
   }
 
 }
