@@ -33,7 +33,7 @@ __Certificado de finalización del curso:__
 
 ----
 
-[Link al Certificado de Finalización del Curso](http://https://www.udemy.com/certificate/UC-176a83b4-48f0-493f-b9fe-4d801547beb1/ "Link al Certificado de Finalización del Curso")
+[Link al Certificado de Finalización del Curso](https://www.udemy.com/certificate/UC-176a83b4-48f0-493f-b9fe-4d801547beb1/ "Link al Certificado de Finalización del Curso")
 
 
 ----
