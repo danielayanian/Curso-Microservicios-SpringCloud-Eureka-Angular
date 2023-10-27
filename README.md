@@ -1,5 +1,5 @@
 
-<h2>Curso de Microservicios, Spring Cloud y Angular</h2> 
+<h1>Curso de Microservicios, Spring Cloud y Angular</h1> 
 
 ---
 
