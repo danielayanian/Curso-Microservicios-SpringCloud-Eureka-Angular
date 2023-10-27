@@ -9,6 +9,10 @@ import { Examen } from 'src/app/models/examen';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { CursoService } from 'src/app/services/curso.service';
 import { ResponderExamenModalComponent } from './responder-examen-modal.component';
+import { RespuestaService } from 'src/app/services/respuesta.service';
+import { Respuesta } from 'src/app/models/respuesta';
+import Swal from 'sweetalert2';
+import { VerExamenModalComponent } from './ver-examen-modal.component';
 
 @Component({
   selector: 'app-responder-examen',
@@ -31,6 +35,7 @@ export class ResponderExamenComponent implements OnInit {
   constructor(private route: ActivatedRoute, 
     private alumnoService: AlumnoService,
     private cursoService: CursoService,
+    private respuestaService: RespuestaService,
     public dialog: MatDialog){}
 
     ngOnInit(): void {
@@ -55,12 +60,33 @@ export class ResponderExamenComponent implements OnInit {
         width: '750px',
         data: {curso: this.curso, alumno: this.alumno, examen: examen}
       });
-      modalRef.afterClosed().subscribe(respuestasMap => {
+      modalRef.afterClosed().subscribe((respuestasMap: Map<number, Respuesta>) => {
         console.log('modal responder examen ha sido enviado y cerrado');
         console.log(respuestasMap);
         if(respuestasMap){
-          const respuestas = Array.from(respuestasMap.values());
+          const respuestas: Respuesta[] = Array.from(respuestasMap.values());
+          this.respuestaService.crear(respuestas).subscribe(rs => {
+            examen.respondido = true;
+            Swal.fire(
+              'Enviadas: ',
+              'Preguntas enviadas con éxito',
+              'success'
+            );
+            console.log(rs);
+          });
         }
+      });
+    }
+
+    verExamen(examen: Examen): void{
+      this.respuestaService.obtenerRespuestasPorAlumnoPorExamen(this.alumno, examen)
+      .subscribe(rs => {
+        const modalRef = this.dialog.open(VerExamenModalComponent, {
+          width: '750px',
+          data: {curso: this.curso, examen: examen, respuestas: rs}
+        });
+        modalRef.afterClosed().subscribe(() => {});
+        console.log('Modal ver examen cerrada');
       });
     }
 
