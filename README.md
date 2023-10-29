@@ -43,7 +43,6 @@ __Video de la App:__
 
 <br>
 
-[![Video de la App](/screen.jpg)](/videoApp.mp4)
-
+[![Video de la App](/screen.jpg)](https://youtu.be/yZG8U2dFwCg)
 
 ----
