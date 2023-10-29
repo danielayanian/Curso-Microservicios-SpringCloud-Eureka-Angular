@@ -67,19 +67,20 @@ CREATE TABLE IF NOT EXISTS `cursos` (
   `create_at` datetime(6) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla db_microservicios_examenes.cursos: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla db_microservicios_examenes.cursos: ~9 rows (aproximadamente)
 DELETE FROM `cursos`;
 INSERT INTO `cursos` (`id`, `create_at`, `nombre`) VALUES
-	(1, '2023-09-17 22:26:07.000000', '1ro Primaria'),
-	(2, '2023-09-17 22:26:07.000000', '2do Primaria'),
-	(3, '2023-09-17 22:26:07.000000', '3ro Primaria'),
-	(4, '2023-09-17 22:26:07.000000', '4to Primaria'),
-	(5, '2023-09-17 22:26:07.000000', '1ro Secundaria'),
-	(6, '2023-09-17 22:26:07.000000', '2do Secundaria'),
-	(7, '2023-09-17 22:26:07.000000', '3ro Secundaria'),
-	(8, '2023-09-17 22:26:07.000000', '4to Secundaria');
+	(17, '2023-10-28 17:53:34.881000', 'React'),
+	(18, '2023-10-28 17:53:42.263000', 'Android'),
+	(19, '2023-10-28 18:05:20.418000', 'Matemática I'),
+	(20, '2023-10-28 18:05:30.981000', 'Matemática avanzada'),
+	(21, '2023-10-28 18:06:15.554000', 'Java'),
+	(22, '2023-10-28 18:06:29.225000', 'Spring Cloud'),
+	(23, '2023-10-28 18:06:39.106000', 'PHP'),
+	(24, '2023-10-28 18:06:49.871000', 'Angular'),
+	(25, '2023-10-28 18:07:08.477000', 'SQL');
 
 -- Volcando estructura para tabla db_microservicios_examenes.cursos_alumnos
 DROP TABLE IF EXISTS `cursos_alumnos`;
@@ -91,13 +92,15 @@ CREATE TABLE IF NOT EXISTS `cursos_alumnos` (
   UNIQUE KEY `UK_pb88irw9u3c0h2lsf3q1kluv9` (`alumno_id`),
   KEY `FKb90xg2w8jai6w555c3erim0cv` (`curso_id`),
   CONSTRAINT `FKb90xg2w8jai6w555c3erim0cv` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla db_microservicios_examenes.cursos_alumnos: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla db_microservicios_examenes.cursos_alumnos: ~4 rows (aproximadamente)
 DELETE FROM `cursos_alumnos`;
 INSERT INTO `cursos_alumnos` (`id`, `alumno_id`, `curso_id`) VALUES
-	(1, 2, 1),
-	(4, 5, 7);
+	(54, 24, 19),
+	(55, 25, 19),
+	(56, 32, 19),
+	(57, 34, 19);
 
 -- Volcando estructura para tabla db_microservicios_examenes.cursos_examenes
 DROP TABLE IF EXISTS `cursos_examenes`;
@@ -110,10 +113,11 @@ CREATE TABLE IF NOT EXISTS `cursos_examenes` (
   CONSTRAINT `FKbj3nwplxm8hswqcbt0tmrqagj` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla db_microservicios_examenes.cursos_examenes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_microservicios_examenes.cursos_examenes: ~2 rows (aproximadamente)
 DELETE FROM `cursos_examenes`;
 INSERT INTO `cursos_examenes` (`curso_id`, `examenes_id`) VALUES
-	(7, 1);
+	(19, 16),
+	(19, 17);
 
 -- Volcando estructura para tabla db_microservicios_examenes.examenes
 DROP TABLE IF EXISTS `examenes`;
@@ -121,17 +125,24 @@ CREATE TABLE IF NOT EXISTS `examenes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `create_at` datetime(6) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
-  `asignatura_id` bigint(20) DEFAULT NULL,
+  `asignatura_hija_id` bigint(20) DEFAULT NULL,
+  `asignatura_padre_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK6ti4mhut3mays6044rt8syqd8` (`asignatura_id`),
-  CONSTRAINT `FK6ti4mhut3mays6044rt8syqd8` FOREIGN KEY (`asignatura_id`) REFERENCES `asignaturas` (`id`),
-  CONSTRAINT `FK_examenes_asignaturas` FOREIGN KEY (`asignatura_id`) REFERENCES `asignaturas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `asignatura_hija_id` (`asignatura_hija_id`),
+  KEY `asignatura_padre_id` (`asignatura_padre_id`),
+  CONSTRAINT `FK8c89lnsrfhtuvaho2asigrcaw` FOREIGN KEY (`asignatura_hija_id`) REFERENCES `asignaturas` (`id`),
+  CONSTRAINT `FK_examenes_asignaturas` FOREIGN KEY (`asignatura_hija_id`) REFERENCES `asignaturas` (`id`),
+  CONSTRAINT `FK_examenes_asignaturas_2` FOREIGN KEY (`asignatura_padre_id`) REFERENCES `asignaturas` (`id`),
+  CONSTRAINT `FKbrfkorjspukivcec7dsn26dv8` FOREIGN KEY (`asignatura_padre_id`) REFERENCES `asignaturas` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla db_microservicios_examenes.examenes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_microservicios_examenes.examenes: ~4 rows (aproximadamente)
 DELETE FROM `examenes`;
-INSERT INTO `examenes` (`id`, `create_at`, `nombre`, `asignatura_id`) VALUES
-	(1, '2023-09-18 02:29:43.123000', 'Examen de historia', NULL);
+INSERT INTO `examenes` (`id`, `create_at`, `nombre`, `asignatura_hija_id`, `asignatura_padre_id`) VALUES
+	(14, '2023-10-28 17:56:21.324000', 'Algebra primera unidad', 8, 1),
+	(15, '2023-10-28 17:58:35.144000', 'Historia general', 21, 5),
+	(16, '2023-10-28 18:03:52.413000', 'Matemática inicial', 9, 1),
+	(17, '2023-10-28 19:28:32.633000', 'Matemática nivel avanzado', 9, 1);
 
 -- Volcando estructura para tabla db_microservicios_examenes.preguntas
 DROP TABLE IF EXISTS `preguntas`;
@@ -142,14 +153,19 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
   PRIMARY KEY (`id`),
   KEY `FK9hlw51x7hfqs1tv3sviwqycqi` (`examen_id`),
   CONSTRAINT `FK9hlw51x7hfqs1tv3sviwqycqi` FOREIGN KEY (`examen_id`) REFERENCES `examenes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla db_microservicios_examenes.preguntas: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla db_microservicios_examenes.preguntas: ~8 rows (aproximadamente)
 DELETE FROM `preguntas`;
 INSERT INTO `preguntas` (`id`, `texto`, `examen_id`) VALUES
-	(7, 'Quien descubrio America', 1),
-	(9, 'Cual es la capital de Francia', 1),
-	(10, 'Quien es Messi', 1);
+	(32, 'Qué es un autovector?', 14),
+	(35, 'Quién descubrió América?', 15),
+	(36, 'Qué país gobernó Alfonsín?', 15),
+	(37, 'Cuánto es 2 + 2?', 16),
+	(38, 'Cuánto es 3 * 4?', 16),
+	(39, 'Cuánto es 5 - 3?', 16),
+	(40, 'Cuánto es 8 * 8?', 17),
+	(41, 'Cuánto es 5 - 1?', 17);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

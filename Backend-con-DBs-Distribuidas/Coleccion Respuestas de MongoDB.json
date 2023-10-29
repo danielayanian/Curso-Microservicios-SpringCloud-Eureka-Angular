@@ -1,81 +1,84 @@
 [{
   "_id": {
-    "$oid": "6515affefedb6077debe6125"
+    "$oid": "653d86d4fe2e4b060de1b7cd"
   },
-  "texto": "Colon",
+  "texto": "4",
   "alumno": {
-    "_id": 5,
-    "nombre": "Matias",
-    "apellido": "Suarez",
-    "email": "msuarez@gmail.com",
+    "_id": 24,
+    "nombre": "Lionel",
+    "apellido": "Messi",
+    "email": "liomessi@gmail.com",
     "createAt": {
-      "$date": "2023-09-18T01:11:38.000Z"
+      "$date": "2023-10-28T20:40:02.487Z"
     }
   },
-  "alumnoId": 5,
+  "alumnoId": 24,
   "pregunta": {
-    "_id": 7,
-    "texto": "Quien descubrio America",
+    "_id": 37,
+    "texto": "Cuánto es 2 + 2?",
     "examen": {
-      "_id": 1,
+      "_id": 16,
+      "nombre": "Matemática inicial",
       "preguntas": [],
       "respondido": false
     }
   },
-  "preguntaId": 7,
+  "preguntaId": 37,
   "_class": "com.danielayanian.microservicios.respuestas.models.entity.Respuesta"
 },
 {
   "_id": {
-    "$oid": "6515affefedb6077debe6126"
+    "$oid": "653d86d4fe2e4b060de1b7ce"
   },
-  "texto": "Paris",
+  "texto": "12",
   "alumno": {
-    "_id": 5,
-    "nombre": "Matias",
-    "apellido": "Suarez",
-    "email": "msuarez@gmail.com",
+    "_id": 24,
+    "nombre": "Lionel",
+    "apellido": "Messi",
+    "email": "liomessi@gmail.com",
     "createAt": {
-      "$date": "2023-09-18T01:11:38.000Z"
+      "$date": "2023-10-28T20:40:02.487Z"
     }
   },
-  "alumnoId": 5,
+  "alumnoId": 24,
   "pregunta": {
-    "_id": 9,
-    "texto": "Cual es la capital de Francia",
+    "_id": 38,
+    "texto": "Cuánto es 3 * 4?",
     "examen": {
-      "_id": 1,
+      "_id": 16,
+      "nombre": "Matemática inicial",
       "preguntas": [],
       "respondido": false
     }
   },
-  "preguntaId": 9,
+  "preguntaId": 38,
   "_class": "com.danielayanian.microservicios.respuestas.models.entity.Respuesta"
 },
 {
   "_id": {
-    "$oid": "6515affefedb6077debe6127"
+    "$oid": "653d86d4fe2e4b060de1b7cf"
   },
-  "texto": "A soccer player",
+  "texto": "2",
   "alumno": {
-    "_id": 5,
-    "nombre": "Matias",
-    "apellido": "Suarez",
-    "email": "msuarez@gmail.com",
+    "_id": 24,
+    "nombre": "Lionel",
+    "apellido": "Messi",
+    "email": "liomessi@gmail.com",
     "createAt": {
-      "$date": "2023-09-18T01:11:38.000Z"
+      "$date": "2023-10-28T20:40:02.487Z"
     }
   },
-  "alumnoId": 5,
+  "alumnoId": 24,
   "pregunta": {
-    "_id": 10,
-    "texto": "Quien es Messi",
+    "_id": 39,
+    "texto": "Cuánto es 5 - 3?",
     "examen": {
-      "_id": 1,
+      "_id": 16,
+      "nombre": "Matemática inicial",
       "preguntas": [],
       "respondido": false
     }
   },
-  "preguntaId": 10,
+  "preguntaId": 39,
   "_class": "com.danielayanian.microservicios.respuestas.models.entity.Respuesta"
 }]
